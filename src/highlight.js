@@ -7,17 +7,20 @@ function getNewLines(str) {
 }
 
 
-function getLineNumbers({ lines, startingLineNumber, style }) {
+function getLineNumbers({ lines, startingLineNumber, style, checkboxClick, highlightLine, checkboxKey, showCheckbox }) {
   return lines.map((_, i) => {
     const number = i + startingLineNumber;
     return (
-      <span 
-        key={`line-${i}`}
-        className='react-syntax-highlighter-line-number' 
-        style={typeof style === 'function' ? style(number) : style}
-      >
-        {`${number}\n`}
-      </span> 
+      <div key={`line-container-${i}`}>
+        {highlightLine.includes(number) && showCheckbox && checkboxClick!=null ? <input type='checkbox' defaultChecked={true} onClick={checkboxClick} data-lineNumber={number} data-checkboxKey={checkboxKey} key={`line-input-${i}`}/> : ""}
+        <span 
+          key={`line-${i}`}
+          className='react-syntax-highlighter-line-number' 
+          style={typeof style === 'function' ? style(number) : style}
+        >
+          {`${number}\n`}
+        </span> 
+      </div>
     );
   });
 }
@@ -26,14 +29,22 @@ function LineNumbers({
   codeString, 
   containerStyle = {float: 'left', paddingRight: '10px'}, 
   numberStyle = {},
-  startingLineNumber 
+  startingLineNumber ,
+  checkboxClick,
+  highlightLine,
+  checkboxKey,
+  showCheckbox
 }) {
   return (
     <code style={containerStyle}>
       {getLineNumbers({
         lines: codeString.replace(/\n$/, '').split('\n'), 
         style: numberStyle,
-        startingLineNumber
+        startingLineNumber,
+        checkboxClick,
+        highlightLine,
+        checkboxKey,
+        showCheckbox
       })}
     </code>
   );
@@ -144,12 +155,16 @@ export default function (lowlight, defaultStyle) {
   codeTagProps = {},
   useInlineStyles = true,
   showLineNumbers = false,
+  showCheckbox = false,
   startingLineNumber = 1,
   lineNumberContainerStyle,
   lineNumberStyle,
   wrapLines,
   lineStyle = {},
   renderer,
+  checkboxClick,
+  highlightLine = [],
+  checkboxKey = '',
   PreTag='pre',
   CodeTag='code',
   code = Array.isArray(children) ? children[0] : children,
@@ -186,10 +201,14 @@ export default function (lowlight, defaultStyle) {
       showLineNumbers
       ?
       <LineNumbers
+        highlightLine={highlightLine}
+        checkboxClick={checkboxClick}
         containerStyle={lineNumberContainerStyle}
         numberStyle={lineNumberStyle}
         startingLineNumber={startingLineNumber}
         codeString={code}
+        checkboxKey={checkboxKey}
+        showCheckbox={showCheckbox}
       />
       :
       null
@@ -204,4 +223,3 @@ export default function (lowlight, defaultStyle) {
     );
   }
 }
-

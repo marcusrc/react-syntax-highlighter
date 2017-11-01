@@ -1,7 +1,7 @@
 {
-  "name": "react-syntax-highlighter",
+  "name": "react-syntax-highlighter-customized",
   "version": "5.8.1",
-  "description": "sane syntax highlighting component for react",
+  "description": "customized react-syntax-highlighter",
   "main": "dist/index.js",
   "dependencies": {
     "babel-runtime": "^6.18.0",
@@ -47,7 +47,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/conorhastings/react-syntax-highlighter.git"
+    "url": "git+https://github.com/marcusrc/react-syntax-highlighter"
   },
   "keywords": [
     "react",
@@ -56,10 +56,10 @@
     "highlighting",
     "ast"
   ],
-  "author": "Conor Hastings",
+  "author": "marcusrc",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/conorhastings/react-syntax-highlighter/issues"
+    "url": "https://github.com/marcusrc/react-syntax-highlighter/issues"
   },
-  "homepage": "https://github.com/conorhastings/react-syntax-highlighter#readme"
+  "homepage": "https://github.com/marcusrc/react-syntax-highlighter#readme"
 }
