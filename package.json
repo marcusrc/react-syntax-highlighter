@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "babel-runtime": "^6.18.0",
-    "highlight.js": "~9.12.0",
+    "highlight.js": "~9.18.1",
     "lowlight": "~1.9.1"
   },
   "jest": {
